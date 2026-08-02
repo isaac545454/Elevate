@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "design-system": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "skillPath": "design/skills/design-system/SKILL.md",
+      "computedHash": "83a5c0b188fd242ee36817e0fd18c603654b2bd5227bf1ba5fc80af1d706ff8f"
+    },
+    "react-architecture": {
+      "source": "sudacadev/react-architecture",
+      "sourceType": "github",
+      "skillPath": "plugins/react-architecture/skills/react-architecture/SKILL.md",
+      "computedHash": "ee0809800bfc27c62e51abf8a134ecc3b02a3fbf5cd1b6dbf213e96eafb8fc81"
+    }
+  }
+}

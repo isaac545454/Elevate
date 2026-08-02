@@ -1,0 +1,93 @@
+.dev-preview {
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+}
+
+.dev-preview__banner {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 2px solid;
+  font-size: 0.85rem;
+}
+
+.dev-preview__banner strong {
+  font-size: 1rem;
+}
+
+.dev-preview__banner a {
+  font-weight: 600;
+}
+
+.dev-preview__banner code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.dev-preview__content {
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.dev-preview--vue {
+  background: #ecfdf5;
+}
+
+.dev-preview--vue .dev-preview__banner {
+  background: #d1fae5;
+  border-color: #42b883;
+  color: #065f46;
+}
+
+.dev-preview--vue .dev-preview__banner code {
+  background: #a7f3d0;
+}
+
+.dev-preview--react {
+  background: #ecfeff;
+}
+
+.dev-preview--react .dev-preview__banner {
+  background: #cffafe;
+  border-color: #61dafb;
+  color: #0e7490;
+}
+
+.dev-preview--react .dev-preview__banner code {
+  background: #a5f3fc;
+}
+
+.dev-preview--angular {
+  background: #fff1f2;
+}
+
+.dev-preview--angular .dev-preview__banner {
+  background: #ffe4e6;
+  border-color: #dd0031;
+  color: #9f1239;
+}
+
+.dev-preview--angular .dev-preview__banner code {
+  background: #fecdd3;
+}
+
+.dev-preview--sidebar {
+  background: #0f172a;
+}
+
+.dev-preview--sidebar .dev-preview__banner {
+  background: #1e293b;
+  border-color: #6366f1;
+  color: #e2e8f0;
+}
+
+.dev-preview--sidebar .dev-preview__banner code {
+  background: #334155;
+  color: #c7d2fe;
+}
+
+.dev-preview--sidebar .dev-preview__content {
+  max-width: 220px;
+  padding: 0;
+  margin: 0;
+}

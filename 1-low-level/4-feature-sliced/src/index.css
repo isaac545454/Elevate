@@ -1,0 +1,237 @@
+:root {
+  color-scheme: light;
+  --bg: #eef2f7;
+  --bg-accent: #dde7f4;
+  --ink: #1a2332;
+  --muted: #5c6b7e;
+  --line: #c5d0de;
+  --surface: #ffffff;
+  --accent: #2456a8;
+  --accent-soft: #dbe7f8;
+  --danger: #9b2c2c;
+  --danger-soft: #f8e4e4;
+  --radius: 14px;
+  --font: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 0%, var(--bg-accent), transparent 40%),
+    radial-gradient(circle at 90% 10%, #e8eef8, transparent 35%),
+    var(--bg);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+}
+
+a {
+  color: var(--accent);
+}
+
+.shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.shell__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+}
+
+.brand strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.brand p {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.nav__link {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, white 60%, transparent);
+}
+
+.nav__link--active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.page__header {
+  margin-bottom: 1.25rem;
+}
+
+.page__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.page h1 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.page__lead {
+  color: var(--muted);
+  max-width: 42rem;
+  line-height: 1.55;
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 28rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.field input {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  background: #fff;
+  color: var(--ink);
+}
+
+.field input:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-color: var(--accent);
+}
+
+.btn {
+  border: none;
+  background: var(--accent);
+  color: white;
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.auth-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  font-size: 0.92rem;
+}
+
+.status {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  line-height: 1.45;
+}
+
+.status--error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}

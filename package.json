@@ -1,0 +1,13 @@
+{
+  "name": "elevate-tlc",
+  "private": true,
+  "scripts": {
+    "kill-ports": "node scripts/kill-ports.mjs",
+    "dev": "node scripts/dev-high.mjs",
+    "dev:all": "node scripts/dev-all.mjs",
+    "dev:high": "node scripts/dev-high.mjs",
+    "e2e": "node scripts/e2e-high.mjs",
+    "e2e:high": "node scripts/e2e-high.mjs",
+    "e2e:ui": "node scripts/e2e-high.mjs --ui"
+  }
+}

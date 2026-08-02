@@ -1,0 +1,177 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.shell__sidebar {
+  flex-shrink: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  padding: 1.5rem 1rem;
+  background: #1e293b;
+  color: #e2e8f0;
+  width: 220px;
+}
+
+.sidebar__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.sidebar__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar__btn:hover {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.sidebar__btn--active {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.sidebar__btn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sidebar__btn--jsonplaceholder .sidebar__btn-dot { background: #42b883; }
+.sidebar__btn--pokemon .sidebar__btn-dot { background: #61dafb; }
+.sidebar__btn--rick .sidebar__btn-dot { background: #dd0031; }
+
+.sidebar__btn--active.sidebar__btn--jsonplaceholder { box-shadow: inset 3px 0 0 #42b883; }
+.sidebar__btn--active.sidebar__btn--pokemon { box-shadow: inset 3px 0 0 #61dafb; }
+.sidebar__btn--active.sidebar__btn--rick { box-shadow: inset 3px 0 0 #dd0031; }
+
+.shell__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+}
+
+.shell__header {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+}
+
+.shell__header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  color: #1e293b;
+}
+
+.shell__header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.shell__header code {
+  font-size: 0.85rem;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.shell__content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 2rem 2rem;
+  width: 100%;
+}
+
+.shell__content .mfe-slot,
+.shell__content .remote-wrapper {
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+}
+
+.mfe-slot--hidden {
+  display: none;
+}
+
+.shell__content .remote-mount {
+  min-height: unset;
+  height: auto;
+}
+
+.remote-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.remote-mount {
+  min-height: 280px;
+}
+
+.remote-loading {
+  padding: 2rem;
+  text-align: center;
+  color: #64748b;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+}
+
+.remote-error {
+  padding: 1.5rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #991b1b;
+  font-size: 0.9rem;
+}
+
+.remote-error strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.remote-error p {
+  margin: 0.25rem 0;
+}
+
+.remote-error__hint {
+  margin-top: 0.75rem !important;
+  font-size: 0.8rem;
+  color: #b91c1c;
+}
+
+.remote-error code {
+  background: #fee2e2;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}

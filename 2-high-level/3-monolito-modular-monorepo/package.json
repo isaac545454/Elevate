@@ -1,0 +1,23 @@
+{
+  "name": "monolito-modular-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "start": "turbo run start",
+    "test:e2e": "turbo run test:e2e",
+    "test:e2e:local": "turbo run test:e2e:local",
+    "test:e2e:headed": "turbo run test:e2e:headed",
+    "test:e2e:ci": "turbo run test:e2e:ci",
+    "test:e2e:ui": "turbo run test:e2e:ui"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  }
+}
