@@ -75,4 +75,29 @@ test.describe('Shell integrado — event bus', () => {
     await expect(shell.pageStatusText).toHaveText(/Página 1 de/, { timeout: 25_000 })
     await expect(shell.previousPageButton).toBeDisabled()
   })
+
+  test('modo native=1 esconde sidebar e __NATIVE_EMIT_NAV__ troca o remote', async ({ page }) => {
+    const shell = new ShellPage(page)
+    const logs = collectEventBusLogs(page)
+    await shell.gotoNative()
+
+    await expect(page.locator('.shell__sidebar')).toHaveCount(0)
+    await expect(shell.shellHeading).toHaveText('JSONPlaceholder')
+    await expect(shell.remoteHeading('jsonplaceholder')).toBeVisible({ timeout: 30_000 })
+
+    await page.evaluate(() => {
+      const emit = (
+        window as Window & { __NATIVE_EMIT_NAV__?: (id: string) => void }
+      ).__NATIVE_EMIT_NAV__
+      if (!emit) throw new Error('__NATIVE_EMIT_NAV__ não registrado')
+      emit('pokemon')
+    })
+
+    await expect
+      .poll(() => logs.sawSent('home-pokemon'), { timeout: 10_000 })
+      .toBe(true)
+    await expect(shell.shellHeading).toHaveText('Pokémon')
+    await expect(shell.remoteHeading('pokemon')).toBeVisible({ timeout: 30_000 })
+    await expect(shell.items.first()).toBeVisible({ timeout: 25_000 })
+  })
 })

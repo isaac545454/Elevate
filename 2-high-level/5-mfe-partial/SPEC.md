@@ -46,7 +46,17 @@ export type MfeEvents = {
 
 O clique na sidebar chama `emitNavChange(mfeId)`, que emite o evento correspondente (`home-*`).
 
-## 5. Dev local
+## 5. Shell nativo (`?native=1`)
+
+O host Kotlin/iOS carrega `http://127.0.0.1:5000/?native=1`:
+
+- Sidebar web some — chrome fica no nativo
+- `window.__NATIVE_EMIT_NAV__(mfeId)` emite o mesmo `home-*`
+- Bus encaminha `nav` via `webkit.messageHandlers.mfeBus`
+
+Remotes não mudam. Federation continua no JS.
+
+## 6. Dev local
 
 ```bash
 npm run install:all
@@ -55,7 +65,7 @@ npm run dev
 
 Os remotes rodam em build-watch + preview para expor `remoteEntry.js`. O shell sobe após `wait-for-remotes`.
 
-## 6. E2E
+## 7. E2E
 
 Um único project no Playwright (o UI Mode só seleciona o 1º project por padrão). Cada spec define o `baseURL`:
 

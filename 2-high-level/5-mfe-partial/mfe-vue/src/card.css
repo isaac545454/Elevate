@@ -5,6 +5,8 @@
 }
 
 .mfe-panel {
+  width: 100%;
+  box-sizing: border-box;
   background: #fff;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
@@ -55,7 +57,8 @@
   padding: 1.25rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  justify-items: stretch;
 }
 
 .mfe-item {
@@ -65,12 +68,16 @@
   background: #f8fafc;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 .mfe-item__image {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: center;
   display: block;
   background: #e2e8f0;
 }
@@ -79,8 +86,10 @@
   padding: 0.85rem 1rem 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
   flex: 1;
+  width: 100%;
 }
 
 .mfe-item__title {

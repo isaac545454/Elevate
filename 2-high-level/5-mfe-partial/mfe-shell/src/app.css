@@ -3,6 +3,49 @@
   min-height: 100vh;
 }
 
+.shell--native {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.shell--native .shell__header p {
+  color: #6366f1;
+}
+
+.shell--native .shell__header {
+  padding: 3.25rem 1rem 0.75rem;
+  text-align: center;
+}
+
+.shell--native .shell__main {
+  width: 100%;
+  max-width: 100%;
+}
+
+.shell--native .shell__content {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 12px 1.5rem;
+  box-sizing: border-box;
+}
+
+.shell--native .mfe-slot,
+.shell--native .remote-wrapper,
+.shell--native .remote-mount {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.shell--native .mfe-slot--hidden {
+  display: none;
+}
+
 .shell__sidebar {
   flex-shrink: 0;
 }

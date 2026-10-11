@@ -36,6 +36,17 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+# Kotlin / Gradle / Android / Xcode
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.iml
+.cxx
+.externalNativeBuild
+captures/
+xcuserdata/
+
 # Playwright
 test-results/
 playwright-report/

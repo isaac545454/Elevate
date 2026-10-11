@@ -5,6 +5,8 @@
 }
 
 .mfe-panel {
+  width: 100%;
+  box-sizing: border-box;
   background: #fff;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
@@ -55,7 +57,8 @@
   padding: 1.25rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  justify-items: stretch;
 }
 
 .mfe-item {
@@ -67,12 +70,14 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 100%;
 }
 
 .mfe-item__image {
   width: 100%;
   aspect-ratio: 1;
   object-fit: contain;
+  object-position: center;
   display: block;
   background: #ecfeff;
   padding: 0.75rem;

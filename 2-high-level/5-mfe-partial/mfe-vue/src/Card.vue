@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { onPageParamChange, readPageParam, writePageParam } from '../../shared/page-url'
+import { nativeAssetUrl } from '../../shared/event-bus'
 
 const PAGE_SIZE = 12
 const TOTAL_POSTS = 100
@@ -39,7 +40,9 @@ async function loadPosts(nextPage: number) {
     const data = (await res.json()) as Post[]
     posts.value = data.map((post) => ({
       ...post,
-      coverImageSrc: `https://picsum.photos/seed/jsonplaceholder-${post.id}/600/375`,
+      coverImageSrc: nativeAssetUrl(
+        `https://picsum.photos/seed/jsonplaceholder-${post.id}/600/375`,
+      ),
     }))
   } catch (err) {
     error.value = err instanceof Error ? err.message : String(err)

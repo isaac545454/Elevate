@@ -34,6 +34,7 @@ type MfeEventBus = {
 declare global {
   interface Window {
     __MFE_PLATFORM_EVENT_BUS__?: MfeEventBus
+    __NATIVE_EMIT_NAV__?: (mfeId: ViewableMfeId) => void
   }
 }
 
@@ -108,6 +109,69 @@ export function onNavChange(handler: (mfeId: ViewableMfeId) => void) {
 export function emitNavChange(mfeId: ViewableMfeId) {
   const type = NAV_EVENT_BY_MFE[mfeId]
   eventBus.emit(type, { mfeId } as MfeEvents[typeof type])
+}
+
+/** Shell nativo (WKWebView / Android) passa `?native=1` e esconde a sidebar web. */
+export function isNativeShell(): boolean {
+  if (typeof window === 'undefined') return false
+  return new URLSearchParams(window.location.search).has('native')
+}
+
+const ASSET_PROXY: [string, string][] = [
+  ['https://picsum.photos', '/__proxy/picsum'],
+  ['https://fastly.picsum.photos', '/__proxy/picsum'],
+  ['https://i.picsum.photos', '/__proxy/picsum'],
+  ['https://raw.githubusercontent.com', '/__proxy/ghraw'],
+  ['https://rickandmortyapi.com', '/__proxy/rick'],
+  ['https://pokeapi.co', '/__proxy/pokeapi'],
+  ['https://jsonplaceholder.typicode.com', '/__proxy/jsonplaceholder'],
+]
+
+/** Reescreve URL pública pra proxy same-origin (WKWebView não carrega HTTPS direto). */
+export function nativeAssetUrl(url: string): string {
+  if (!isNativeShell()) return url
+  for (const [from, to] of ASSET_PROXY) {
+    if (url.startsWith(from)) {
+      return `${window.location.origin}${to}${url.slice(from.length)}`
+    }
+  }
+  return url
+}
+
+function postToNative(type: string, payload: unknown): void {
+  const msg = JSON.stringify({ type, payload })
+  const wk = (
+    window as Window & {
+      webkit?: { messageHandlers?: Record<string, { postMessage: (m: string) => void }> }
+    }
+  ).webkit?.messageHandlers?.mfeBus
+  wk?.postMessage(msg)
+
+  const android = (
+    window as Window & { NativeShell?: { onEvent?: (m: string) => void } }
+  ).NativeShell
+  android?.onEvent?.(msg)
+}
+
+/**
+ * Ponte JS ↔ nativo. No-op sem `?native=`.
+ * Nativo chama `window.__NATIVE_EMIT_NAV__(mfeId)`.
+ * Bus emite → `webkit.messageHandlers.mfeBus.postMessage`.
+ */
+export function attachNativeShellBridge(): void {
+  if (!isNativeShell()) return
+  if (typeof window === 'undefined') return
+  if (window.__NATIVE_EMIT_NAV__) return
+
+  onNavChange((mfeId) => {
+    postToNative('nav', { mfeId })
+  })
+
+  window.__NATIVE_EMIT_NAV__ = (mfeId: ViewableMfeId) => {
+    emitNavChange(mfeId)
+  }
+
+  postToNative('ready', {})
 }
 
 

@@ -1,4 +1,5 @@
 import { onPageParamChange, readPageParam, writePageParam } from '../../shared/page-url'
+import { nativeAssetUrl } from '../../shared/event-bus'
 import './card.css'
 
 const PAGE_SIZE = 12
@@ -71,7 +72,7 @@ function renderItems(characters: Character[]): string {
     .map(
       (character) => `
       <li class="mfe-item">
-        <img src="${character.image}" alt="${character.name}" class="mfe-item__image" />
+        <img src="${nativeAssetUrl(character.image)}" alt="${character.name}" class="mfe-item__image" />
         <div class="mfe-item__body">
           <h3 class="mfe-item__title">${character.name}</h3>
           <p class="mfe-item__desc">${character.status} · ${character.species}</p>

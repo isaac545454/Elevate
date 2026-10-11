@@ -28,6 +28,10 @@ export class ShellPage {
     await this.page.goto('/')
   }
 
+  async gotoNative() {
+    await this.page.goto('/?native=1')
+  }
+
   sidebarButton(mfeId: ShellMfeId) {
     return this.page.locator(`.sidebar__btn--${mfeId}`)
   }

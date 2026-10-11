@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { onPageParamChange, readPageParam, writePageParam } from '../../shared/page-url'
+import { nativeAssetUrl } from '../../shared/event-bus'
 
 const PAGE_SIZE = 12
 
@@ -47,7 +48,9 @@ export default function Card() {
           return {
             id,
             name: entry.name,
-            imageSrc: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+            imageSrc: nativeAssetUrl(
+              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+            ),
           }
         })
         if (cancelled) return

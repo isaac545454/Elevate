@@ -35,6 +35,8 @@ Abra [http://localhost:5000](http://localhost:5000).
 | Pokémon | `home-pokemon` | React `:5002` | pokeapi.co |
 | Rick and Morty | `home-rick` | Angular `:5003` | rickandmortyapi.com |
 
+Shell nativo (iOS `6-kmp`): abre `/?native=1` — mesma tabela, chrome em Swift/Kotlin.
+
 ## E2E (Playwright)
 
 Duas estratégias:

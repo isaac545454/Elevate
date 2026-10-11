@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   emitNavChange,
+  isNativeShell,
   onNavChange,
   type ViewableMfeId,
 } from '../../shared/event-bus'
@@ -125,6 +126,7 @@ function MfeSlot({ remoteName, loader, label, visible, shouldLoad }: MfeSlotProp
 }
 
 export default function App() {
+  const nativeShell = isNativeShell()
   const [activeMfe, setActiveMfe] = useState<ViewableMfeId>('jsonplaceholder')
   const [visited, setVisited] = useState<Set<ViewableMfeId>>(
     () => new Set(['jsonplaceholder']),
@@ -139,30 +141,36 @@ export default function App() {
   const activeLabel = MFES.find((mfe) => mfe.id === activeMfe)?.label ?? activeMfe
 
   return (
-    <div className="shell">
-      <aside className="shell__sidebar">
-        <nav className="sidebar">
-          <ul className="sidebar__nav">
-            {MFES.map((mfe) => (
-              <li key={mfe.id}>
-                <button
-                  type="button"
-                  className={`sidebar__btn sidebar__btn--${mfe.id}${activeMfe === mfe.id ? ' sidebar__btn--active' : ''}`}
-                  onClick={() => emitNavChange(mfe.id)}
-                >
-                  <span className="sidebar__btn-dot" />
-                  {mfe.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
+    <div className={`shell${nativeShell ? ' shell--native' : ''}`}>
+      {!nativeShell && (
+        <aside className="shell__sidebar">
+          <nav className="sidebar">
+            <ul className="sidebar__nav">
+              {MFES.map((mfe) => (
+                <li key={mfe.id}>
+                  <button
+                    type="button"
+                    className={`sidebar__btn sidebar__btn--${mfe.id}${activeMfe === mfe.id ? ' sidebar__btn--active' : ''}`}
+                    onClick={() => emitNavChange(mfe.id)}
+                  >
+                    <span className="sidebar__btn-dot" />
+                    {mfe.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      )}
 
       <main className="shell__main">
         <header className="shell__header">
           <h1>{activeLabel}</h1>
-          <p>Container — cada MFE busca e exibe dados de uma API pública</p>
+          <p>
+            {nativeShell
+              ? 'Host nativo — navegação via event bus'
+              : 'Container — cada MFE busca e exibe dados de uma API pública'}
+          </p>
         </header>
 
         <div className="shell__content">

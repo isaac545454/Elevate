@@ -16,9 +16,27 @@ export function attachMfeShadow(host: HTMLElement): ShadowRoot {
 const HOST_BASE_STYLE = `
 :host {
   display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #1e293b;
   line-height: 1.5;
+}
+[data-mfe-mount] {
+  display: block;
+  width: 100%;
+}
+.mfe-panel {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+:host-context(.shell--native) .mfe-panel__grid {
+  grid-template-columns: 1fr;
+}
+:host-context(.shell--native) .mfe-item {
+  width: 100%;
 }
 `
 
